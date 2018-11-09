@@ -3,6 +3,7 @@
   padding: 0.5rem 1rem;
 
   background: transparent;
+  transition: background-color 0.2s ease-in;
 
   border: none;
   border-radius: 2px;
@@ -20,5 +21,10 @@
     &:active {
       background: $primary-active;
     }
+  }
+
+  &[disabled] {
+    background: $gray;
+    color: white;
   }
 }

@@ -1,7 +1,8 @@
-import Fragment from 'ember-data-model-fragments/fragment';
 import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
+import Model from 'ember-data/model';
 
-export default Fragment.extend({
+export default Model.extend({
   recipients: attr('string'),
-  table: attr()
+  table: belongsTo('table')
 });
