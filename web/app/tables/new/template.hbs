@@ -1,0 +1,22 @@
+<h2>Edit table</h2>
+
+<FormField @label="Table name">
+  <input
+    class="form-field__input"
+    value={{table.title}}
+    onchange={{action (mut table.title) value="target.value"}}
+  >
+</FormField>
+
+<EditableTable @columns={{table.columns}} @rows={{table.rows}} />
+
+<FormField @label="Send to">
+  <input
+    class="form-field__input"
+    placeholder="Email address"
+    value={{email.recipients}}
+    onchange={{action (mut email.recipients) value="target.value"}}
+  >
+</FormField>
+
+<button class="btn btn--primary" {{action "sendEmail" email}}>Send</button>
