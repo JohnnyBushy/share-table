@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+
+  db-migration:
+    build: ./db-migration
+    links:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+
+  db:
+    image: postgres:10.5-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
