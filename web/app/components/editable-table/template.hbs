@@ -1,9 +1,10 @@
 <tbody>
   {{#each @rows as |row index|}}
-    <tr class="editable-table__row">
+    <tr data-test-table-row class="editable-table__row">
       {{#each row.cells as |cell index|}}
-        <td class="editable-table__cell">
+        <td data-test-table-cell class="editable-table__cell">
           <input
+            data-test-table-cell-input
             class="editable-table__cell-input"
             placeholder="Cell"
             value={{cell.value}}

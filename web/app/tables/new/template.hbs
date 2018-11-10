@@ -1,15 +1,17 @@
 <FormField @label="Table name">
   <input
+    data-test-table-name
     class="form-field__input"
     value={{table.title}}
     onchange={{action (mut table.title) value="target.value"}}
   >
 </FormField>
 
-<EditableTable @columns={{table.columns}} @rows={{table.rows}} />
+<EditableTable data-test-table @columns={{table.columns}} @rows={{table.rows}} />
 
 <FormField @label="Send to">
   <input
+    data-test-email-recipients
     class="form-field__input"
     placeholder="Email address"
     value={{recipients}}
@@ -19,6 +21,7 @@
 
 <div>
 <button
+  data-test-email-send
   class="btn btn--primary"
   disabled={{saveAndSendByEmail.isRunning}}
   {{action (perform saveAndSendByEmail table recipients)}}
@@ -26,7 +29,7 @@
   {{if saveAndSendByEmail.isRunning "Sending..." "Send"}}
 </button>
 {{#if error}}
-  <div class="alert alert--error">
+  <div data-test-email-send-error class="alert alert--error">
     {{error}}
   </div>
 {{/if}}
