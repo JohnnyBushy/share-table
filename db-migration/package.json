@@ -1,0 +1,12 @@
+{
+  "name": "db-migration",
+  "version": "1.0.0",
+  "scripts": {
+    "migrate": "node-pg-migrate"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "node-pg-migrate": "^3.13.0",
+    "pg": "^7.6.1"
+  }
+}

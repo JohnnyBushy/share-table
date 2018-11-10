@@ -1,0 +1,27 @@
+.editable-table {
+  margin-bottom: 1rem;
+
+  table-layout: fixed;
+  border-collapse: collapse;
+
+  &__cell {
+    padding: 0;
+
+    border: 1px solid $gray-lighter;
+  }
+
+  &__cell-input {
+    width: 100%;
+    padding: 6px;
+
+    border: none;
+
+    text-align: right;
+
+    &:focus {
+      box-shadow: inset 0 0 0 1px $primary-hover;
+      background-color: $gray-lightest;
+    }
+  }
+}
+

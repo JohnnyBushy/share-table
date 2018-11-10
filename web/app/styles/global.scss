@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  max-width: 100%;
+
+  font-size: 14px;
+  font-family: 'Roboto', 'Arial', sans-serif;
+  color: $dark;
+}
+
+.application-container {
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+}

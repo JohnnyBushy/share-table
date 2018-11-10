@@ -1,0 +1,55 @@
+version: '3.1'
+
+services:
+
+  app-dev:
+    image: node:8.12.0-alpine
+    links:
+      - api-dev
+    ports:
+      - 80:4200
+    volumes:
+      - ./web:/usr/src
+    working_dir: /usr/src
+    command: yarn start -- --proxy http://api-dev:3000
+
+  api-dev:
+    image: node:8.12.0-alpine
+    links:
+      - db
+      - db-migration
+      - smtp
+    environment:
+      - PGHOST=db
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/usr/src
+    working_dir: /usr/src
+    command: yarn server
+
+  db-migration:
+    build: ./db-migration
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+
+  db:
+    image: postgres:10.5-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
