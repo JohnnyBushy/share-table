@@ -7,6 +7,7 @@ services:
     links:
       - db
       - db-migration
+      - smtp
     environment:
       - PGHOST=db
       - PGDATABASE=postgres
@@ -34,3 +35,8 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
