@@ -1,0 +1,36 @@
+version: '3.1'
+
+services:
+
+  api-dev:
+    image: node:8.12.0-alpine
+    links:
+      - db
+      - db-migration
+    environment:
+      - PGHOST=db
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=postgres
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/usr/src
+    working_dir: /usr/src
+    command: yarn server
+
+  db-migration:
+    build: ./db-migration
+    links:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+
+  db:
+    image: postgres:10.5-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
