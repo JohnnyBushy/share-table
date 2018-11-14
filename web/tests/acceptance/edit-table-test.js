@@ -47,4 +47,22 @@ module('Acceptance | edit table', function(hooks) {
 
     assert.equal(newTable.errorIsHidden, false, `Error is shown`);
   });
+
+  test('can add rows', async function(assert) {
+    await newTable.visit();
+
+    await newTable.tableAddRow();
+
+    assert.equal(newTable.tableRows.length, 6);
+  });
+
+  test('can add column', async function(assert) {
+    await newTable.visit();
+
+    await newTable.tableAddColumn();
+
+    await asyncForEach(newTable.tableRows.toArray(), async row => {
+      assert.equal(row.cells.length, 6);
+    });
+  });
 });

@@ -1,17 +1,37 @@
-<tbody>
-  {{#each @rows as |row index|}}
-    <tr data-test-table-row class="editable-table__row">
-      {{#each row.cells as |cell index|}}
-        <td data-test-table-cell class="editable-table__cell">
-          <input
-            data-test-table-cell-input
-            class="editable-table__cell-input"
-            placeholder="Cell"
-            value={{cell.value}}
-            onchange={{action (mut cell.value) value="target.value"}}
-          >
-        </td>
-      {{/each}}
-    </tr>
-  {{/each}}
-</tbody>
+<div>
+  <button
+    data-test-table-add-column
+    class="btn btn--primary"
+    {{action addColumn @rows}}
+  >
+    +
+  </button>
+</div>
+<table>
+  <tbody>
+    {{#each @rows as |row index|}}
+      <tr data-test-table-row class="editable-table__row">
+        {{#each row.cells as |cell index|}}
+          <td data-test-table-cell class="editable-table__cell">
+            <input
+              data-test-table-cell-input
+              class="editable-table__cell-input"
+              placeholder="Cell"
+              value={{cell.value}}
+              onchange={{action (mut cell.value) value="target.value"}}
+            >
+          </td>
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+<div>
+  <button
+    data-test-table-add-row
+    class="btn btn--primary"
+    {{action addRow @rows}}
+  >
+    +
+  </button>
+</div>

@@ -26,6 +26,9 @@ export default create({
     })
   }),
 
+  tableAddColumn: clickable('[data-test-table-add-column]'),
+  tableAddRow: clickable('[data-test-table-add-row]'),
+
   sendEmail: clickable('[data-test-email-send]'),
 
   errorIsHidden: isHidden('[data-test-email-send-error]')
